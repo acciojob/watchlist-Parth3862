@@ -1,5 +1,6 @@
 package com.driver;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -10,11 +11,15 @@ public class MovieRepository {
     private Map<String, Director> directorsMap = new HashMap<>();
 
     public void addMovie(Movie movie){
-        moviesMap.put(movie.getMovieName(), movie);
+        if (!moviesMap.containsKey(movie.getMovieName())) {
+            moviesMap.put(movie.getMovieName(), movie);
+        }
     }
 
     public void addDirector(Director director){
-        directorsMap.put(director.getDirectorName(),director);
+        if (!directorsMap.containsKey(director.getDirectorName())) {
+            directorsMap.put(director.getDirectorName(), director);
+        }
     }
 
     public void addMovieDirectorPair(Movie movie, Director director){
